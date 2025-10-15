@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Open index.html",
+            "type": "chrome",
+            "request": "launch",
+            "file": "c:\\Users\\ZERO\\Desktop\\Redisgn web-pde pens\\index.html"
+        },
+        {
+            "type": "msedge",
+            "name": "http://127.0.0.1:3000/index.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/index.html"
+        }
+    ]
+}

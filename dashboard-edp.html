@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Sistem Informasi Eksekutif - Unit EDP</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  /* Carousel */
+  .carousel-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #8181e0;
+    color: white;
+    border-radius: 10px;
+    width: 80%;              /* Lebar kotak diatur 80% dari layar */
+    margin: 50px auto;       /* Otomatis tengah */
+    padding: 80px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .carousel-item h2 {
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .carousel-item p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #f5f5f5;
+  }
+
+  .logo-pens {
+    width: 70px;
+    margin-bottom: 15px;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #8181e0;
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .left {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  footer .right {
+    font-size: 14px;
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- Carousel -->
+   <section id="berada" class="berada-p5"></section>
+  <div id="dashboardCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <img src="pens.png" alt="Logo PENS" class="logo-pens">
+        <h2>DASHBOARD SISTEM INFORMASI EKSEKUTIF</h2>
+        <p>Unit EDP</p>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#dashboardCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#dashboardCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+
+
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard EDP</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #8181e0;
+      color: white;
+      padding: 15px 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .dashboard {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 420px;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 280px !important;
+    }
+
+    footer {
+      background-color: #8181e0;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Dashboard EDP</h1>
+    <p>Data Online MIS</p>
+  </header>
+
+  <!-- Chart Container -->
+  <div class="dashboard">
+    <div class="card">
+      <h3>Jumlah Mahasiswa Online MIS Berdasarkan Jenjang Bulan Oktober 2025</h3>
+      <canvas id="chartJenjang"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Jumlah Mahasiswa Online MIS Program Studi D3 Bulan Oktober 2025</h3>
+      <canvas id="chartD3"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Jumlah Mahasiswa Online MIS Program Studi D4 Bulan Oktober 2025</h3>
+      <canvas id="chartD4"></canvas>
+    </div>
+  </div>
+
+ 
+
+  <!-- Chart Script -->
+  <script>
+    // Chart 1 - Berdasarkan Jenjang
+    new Chart(document.getElementById('chartJenjang'), {
+      type: 'pie',
+      data: {
+        labels: ['D3', 'D4'],
+        datasets: [{
+          label: 'Jumlah',
+          data: [0, 0],
+          backgroundColor: ['#7c83fd', '#96baff']
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+    // Chart 2 - D3
+    new Chart(document.getElementById('chartD3'), {
+      type: 'bar',
+      data: {
+        labels: ['ELEKTRONIKA', 'TELEKOMUNIKASI', 'INFORMATIKA', 'MULTIMEDIA'],
+        datasets: [{
+          label: 'Jumlah',
+          data: [856, 935, 737, 581],
+          backgroundColor: '#8b3a3a'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // Chart 3 - D4
+    new Chart(document.getElementById('chartD4'), {
+      type: 'bar',
+      data: {
+        labels: ['ELEKTRONIKA', 'TELEKOMUNIKASI', 'ELEKTRO INDUSTRI', 'INFORMATIKA', 'MEKATRONIKA', 'TEK KOMPUTER', 'SPE', 'TEK GAME'],
+        datasets: [{
+          label: 'Jumlah',
+          data: [1020, 900, 933, 1057, 997, 1361, 804, 1024],
+          backgroundColor: '#7a82eb'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard EDP</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #8181e0;
+      color: white;
+      padding: 15px 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .dashboard {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 600px;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 320px !important;
+    }
+
+    footer {
+      background-color: #8181e0;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Dashboard EDP</h1>
+    <p>Data Online MIS</p>
+  </header>
+
+  <!-- Chart Container -->
+  <div class="dashboard">
+    <div class="card">
+      <h3>Jumlah Pengunjung Online MIS Dosen dan Karyawan Bulan Oktober 2025</h3>
+      <canvas id="chartPengunjung"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Jumlah Mahasiswa Online MIS Berdasarkan Jurusan Bulan Oktober 2025</h3>
+      <canvas id="chartJurusan"></canvas>
+    </div>
+  </div>
+
+ 
+
+  <!-- Chart Script -->
+  <script>
+    // Chart 1 - Pie (Dosen dan Pegawai)
+    new Chart(document.getElementById('chartPengunjung'), {
+      type: 'pie',
+      data: {
+        labels: ['Dosen', 'Pegawai'],
+        datasets: [{
+          label: 'Jumlah',
+          data: [627, 61],
+          backgroundColor: ['#e74c3c', '#5d6dd1']
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.raw;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 2 - Line (Jurusan)
+    new Chart(document.getElementById('chartJurusan'), {
+      type: 'line',
+      data: {
+        labels: [
+          'ELEKTRONIKA',
+          'TELEKOMUNIKASI',
+          'ELEKTRO INDUSTRI',
+          'INFORMATIKA',
+          'MEKATRONIKA',
+          'TEK.KOMPUTER',
+          'MULTIMEDIA',
+          'SPE',
+          'TEK.GAME'
+        ],
+        datasets: [{
+          label: 'Jurusan',
+          data: [2064, 2088, 2149, 4053, 987, 1361, 933, 804, 1024],
+          borderColor: '#e74c3c',
+          backgroundColor: '#e74c3c55',
+          fill: false,
+          tension: 0.3,
+          pointRadius: 5,
+          pointBackgroundColor: '#e74c3c'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Jumlah'
+            }
+          },
+          x: {
+            ticks: {
+              autoSkip: false,
+              maxRotation: 45,
+              minRotation: 45
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard EDP - Data Autobot</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Header */
+    header {
+      background-color: #7b89f5;
+      color: white;
+      padding: 20px 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Kontainer utama */
+    .dashboard {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 25px;
+      padding: 40px 20px;
+      background-color: #fafafa;
+      flex-wrap: wrap;
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 620px;
+      min-height: 430px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    /* Chart area */
+    canvas {
+      width: 100%;
+      height: 340px !important;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #7b89f5;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 25px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Dashboard EDP</h1>
+    <p>Data Autobot</p>
+  </header>
+
+  <!-- Dashboard -->
+  <main class="dashboard">
+    <!-- Card D3 -->
+    <div class="card">
+      <h3>Jumlah Mahasiswa Online Autobot Program Studi D3 Bulan Oktober 2025</h3>
+      <canvas id="chartD3"></canvas>
+    </div>
+
+    <!-- Card D4 -->
+    <div class="card">
+      <h3>Jumlah Mahasiswa Online Autobot Program Studi D4 Bulan Oktober 2025</h3>
+      <canvas id="chartD4"></canvas>
+    </div>
+  </main>
+
+ 
+  <script>
+    // Data untuk chart D3
+    const ctxD3 = document.getElementById('chartD3').getContext('2d');
+    new Chart(ctxD3, {
+      type: 'bar',
+      data: {
+        labels: ['ELEKTRONIKA', 'TELEKTRONIKA', 'ELEKTRO INDUSTRI', 'INFORMATIKA', 'MULTIMEDIA'],
+        datasets: [{
+          label: 'Jumlah',
+          data: [0, 0, 0, 0, 0],
+          backgroundColor: 'rgba(123,137,245,0.7)',
+          borderColor: '#7b89f5',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true },
+          x: { ticks: { maxRotation: 45, minRotation: 45 } }
+        },
+        plugins: {
+          legend: { display: false },
+          title: { display: false }
+        }
+      }
+    });
+
+    // Data untuk chart D4
+    const ctxD4 = document.getElementById('chartD4').getContext('2d');
+    new Chart(ctxD4, {
+      type: 'bar',
+      data: {
+        labels: ['ELEKTRONIKA', 'TELEKTRONIKA', 'ELEKTRO INDUSTRI', 'INFORMATIKA', 'MEKATRONIKA', 'TEK.KOMPUTER', 'SPE', 'TEK.GAME'],
+        datasets: [{
+          label: 'Jumlah',
+          data: [0, 0, 0, 0, 0, 0, 0, 0],
+          backgroundColor: 'rgba(123,137,245,0.7)',
+          borderColor: '#7b89f5',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true },
+          x: { ticks: { maxRotation: 45, minRotation: 45 } }
+        },
+        plugins: {
+          legend: { display: false },
+          title: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard EDP - Data Login MIS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* HEADER */
+    .header {
+      background-color: #7a83eb;
+      color: #fff;
+      padding: 15px 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #f2f2f2;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 25px;
+      background-color: #fff;
+      min-height: 420px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      width: 32%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 260px !important;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #7a83eb;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+      .card {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Dashboard EDP</h1>
+    <h2>Data Login MIS</h2>
+  </div>
+
+  <!-- DASHBOARD CONTENT -->
+  <div class="dashboard">
+    <!-- Card 1 -->
+    <div class="card">
+      <h3>Jumlah Pengunjung Login MIS Dosen dan Karyawan Bulan Oktober 2025</h3>
+      <canvas id="chart1"></canvas>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h3>Jumlah Pengunjung Login MIS Karyawan Berdasarkan Jenis Kelamin Bulan Oktober 2025</h3>
+      <canvas id="chart2"></canvas>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <h3>Jumlah Pengunjung Login MIS Dosen Berdasarkan Jenis Kelamin Bulan Oktober 2025</h3>
+      <canvas id="chart3"></canvas>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>POLITEKNIK ELEKTRONIKA NEGERI SURABAYA</span>
+    <div>Today : Friday, 10-10-2025</div>
+  </footer>
+
+  <!-- SCRIPT CHART -->
+  <script>
+    // Chart 1 - Dosen & Karyawan
+    new Chart(document.getElementById('chart1'), {
+      type: 'pie',
+      data: {
+        labels: ['DOSEN: 1050 orang', 'PEGAWAI: 1911 orang'],
+        datasets: [{
+          data: [1050, 1911],
+          backgroundColor: ['#ff6384', '#36a2eb']
+        }]
+      }
+    });
+
+    // Chart 2 - Karyawan Berdasarkan Gender
+    new Chart(document.getElementById('chart2'), {
+      type: 'pie',
+      data: {
+        labels: ['L: 1611 orang', 'P: 1334 orang'],
+        datasets: [{
+          data: [1611, 1334],
+          backgroundColor: ['#ff9f40', '#4bc0c0']
+        }]
+      }
+    });
+
+    // Chart 3 - Dosen Berdasarkan Gender
+    new Chart(document.getElementById('chart3'), {
+      type: 'pie',
+      data: {
+        labels: ['L: 0 orang', 'P: 0 orang'],
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: ['#9966ff', '#ffcd56']
+        }]
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard EDP - Data Login MIS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* HEADER */
+    .header {
+      background-color: #7a83eb;
+      color: #fff;
+      padding: 15px 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #f2f2f2;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 25px;
+      background-color: #fff;
+      min-height: 420px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      width: 32%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 260px !important;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #7a83eb;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+      .card {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Dashboard EDP</h1>
+    <h2>Data Login MIS</h2>
+  </div>
+
+  <!-- DASHBOARD CONTENT -->
+  <div class="dashboard">
+    <!-- Card 1 -->
+    <div class="card">
+      <h3>Jumlah Pengunjung Login MIS Dosen dan Karyawan Bulan Oktober 2025</h3>
+      <canvas id="chart1"></canvas>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h3>Jumlah Pengunjung Login MIS Karyawan Berdasarkan Jenis Kelamin Bulan Oktober 2025</h3>
+      <canvas id="chart2"></canvas>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <h3>Jumlah Pengunjung Login MIS Dosen Berdasarkan Jenis Kelamin Bulan Oktober 2025</h3>
+      <canvas id="chart3"></canvas>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>POLITEKNIK ELEKTRONIKA NEGERI SURABAYA</span>
+    <div>Today : Friday, 10-10-2025</div>
+  </footer>
+
+  <!-- SCRIPT CHART -->
+  <script>
+    // Chart 1 - Dosen & Karyawan
+    new Chart(document.getElementById('chart1'), {
+      type: 'pie',
+      data: {
+        labels: ['DOSEN: 1050 orang', 'PEGAWAI: 1911 orang'],
+        datasets: [{
+          data: [1050, 1911],
+          backgroundColor: ['#ff6384', '#36a2eb']
+        }]
+      }
+    });
+
+    // Chart 2 - Karyawan Berdasarkan Gender
+    new Chart(document.getElementById('chart2'), {
+      type: 'pie',
+      data: {
+        labels: ['L: 1611 orang', 'P: 1334 orang'],
+        datasets: [{
+          data: [1611, 1334],
+          backgroundColor: ['#ff9f40', '#4bc0c0']
+        }]
+      }
+    });
+
+    // Chart 3 - Dosen Berdasarkan Gender
+    new Chart(document.getElementById('chart3'), {
+      type: 'pie',
+      data: {
+        labels: ['L: 0 orang', 'P: 0 orang'],
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: ['#9966ff', '#ffcd56']
+        }]
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="left">POLITEKNIK ELEKTRONIKA NEGERI SURABAYA</div>
+    <div class="right">Today : Friday, 10-10-2025</div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
