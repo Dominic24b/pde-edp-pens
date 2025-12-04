@@ -4091,3 +4091,37 @@ body {
 
 
 
+
+/* Tombol Portofolio di Navbar */
+.btn-portofolio {
+    background: linear-gradient(135deg, #00ff88, #0066ff) !important;
+    color: #fff !important;
+    padding: 8px 20px !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    margin-left: 15px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.btn-portofolio:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5) !important;
+    color: #fff !important;
+}
+
+.btn-portofolio i {
+    font-size: 16px;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .btn-portofolio {
+        margin: 10px 0 !important;
+        display: block !important;
+        text-align: center !important;
+    }
+}
